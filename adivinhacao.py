@@ -1,12 +1,10 @@
 import random
 
 def jogar():
+    imprime_mensagem_de_abertura()
 
-    print(30 * '*')
-    print("Bem vindo ao jogo de Advinhação")
-    print(30 * '*')
+    numero_secreto = define_numero_secreto()
 
-    numero_secreto = random.randint(1, 101)
     total_de_tentativas = 0
     pontos = 1000
 
@@ -25,12 +23,12 @@ def jogar():
     for rodada in range(1, total_de_tentativas + 1):
         print("Tentativa {} de {}".format(rodada, total_de_tentativas))
 
-        chute_str = input("Digite um número entre 1 e 100: ")
+        chute_str = input("Digite um número entre 1 e 10: ")
         print("Você digitou {}".format(chute_str))
         chute = int(chute_str)
 
-        if(chute < 1 or chute > 100):
-            print("Você deve digitar um número maior que 0.")
+        if(chute < 1 or chute > 10):
+            print("Você deve digitar um número entre 1 e 10.")
             continue
 
         acertou = chute == numero_secreto
@@ -49,7 +47,16 @@ def jogar():
             pontos_perdidos = abs(numero_secreto - chute)
             pontos -= pontos_perdidos
 
-    print("Fim do jogo")
+
+def imprime_mensagem_de_abertura():
+    print(30 * '*')
+    print("Bem vindo ao jogo de Advinhação")
+    print(30 * '*')
+
+def define_numero_secreto():
+    numero_secreto = random.randint(1, 10)
+    return numero_secreto
+
 
 if(__name__ == "__main__"):
     jogar()
